@@ -23,7 +23,11 @@ class Collection(Document):
 
 
 class Album(Collection):
-    release_date = StringField(max_length=50)
+    release_date = DateTimeField()
+
+
+class Mix(Collection):
+    web_page = StringField()
 
 
 class Track(Document):
@@ -34,6 +38,7 @@ class Track(Document):
     lyrics = StringField()
     language = StringField()
     youtube_link = StringField()
+    web_page = StringField()
     genres = ListField(ReferenceField(Genre))
     associations = ListField(ReferenceField(Association))
 
