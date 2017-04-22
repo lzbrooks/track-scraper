@@ -98,7 +98,8 @@ DATABASES = {
 #     % (_MONGODB_USER, _MONGODB_PASSWD, _MONGODB_HOST, _MONGODB_NAME)
 #
 # mongoengine.connect(_MONGODB_NAME, host=_MONGODB_DATABASE_HOST)
-mongoengine.connect('manage_music_db')
+# mongoengine.connect('manage_music_db')
+mongoengine.connect(host=os.environ['MONGODB_URI'])
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
