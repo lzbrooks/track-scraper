@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
+# import mongoengine
+#
+# user = authenticate(username=username, password=password)
+# assert isinstance(user, mongoengine.django.auth.User)
 
 
 # Create your views here.
