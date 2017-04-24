@@ -1,1 +1,1 @@
-web: gunicorn track_scraper_app.wsgi --log-file -
+web: gunicorn track_scraper_app.wsgi
