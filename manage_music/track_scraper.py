@@ -1,13 +1,13 @@
 # import sys
 
-from .track_scraper_utils import get_webpage_soup, set_up_logging_file, set_up_logging_to_console
+from .track_scraper_utils import get_webpage_soup
+import logging
 
-logging = set_up_logging_file()
-set_up_logging_to_console()
+log = logging.getLogger(__name__)
 
 
 def scraper_practice(possible_proxy_settings):
-    logging.info("Starting Scraper Practice")
+    log.info("Starting Scraper Practice")
     # TODO: figure out when to stop scraping infinite scroll pages
     i = 0
     while i < 77:
@@ -16,7 +16,7 @@ def scraper_practice(possible_proxy_settings):
         all_fav_tracks = webpage_soup.find_all("li", class_="track fav_track")
         scrape_section(all_fav_tracks)
         i += 1
-    logging.info("Finished Scraper Practice")
+    log.info("Finished Scraper Practice")
 
 
 def scrape_section(all_fav_tracks):
@@ -32,7 +32,7 @@ def scrape_section(all_fav_tracks):
         fav_track_year = ""
         if fav_track.find(class_="year"):
             fav_track_year = fav_track.find(class_="year").find(class_="detail").string
-        logging.info(fav_track_title + " by " + fav_track_artist + " in " + fav_track_album + ", " + fav_track_year)
+        log.info(fav_track_title + " by " + fav_track_artist + " in " + fav_track_album + ", " + fav_track_year)
 #
 #
 # # Main Function Call

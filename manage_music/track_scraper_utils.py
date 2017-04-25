@@ -1,4 +1,3 @@
-import logging
 import requests
 from bs4 import BeautifulSoup
 import os
@@ -6,23 +5,6 @@ import os
 
 # Settings
 os.environ['NO_PROXY'] = 'localhost'
-
-
-def set_up_logging_file():
-    logging.basicConfig(filename='web_scraper.log',
-                        level=logging.INFO,
-                        format='%(asctime)s %(levelname)s: %(message)s',
-                        datefmt='%m/%d/%Y %I:%M:%S %p')
-    return logging
-
-
-def set_up_logging_to_console():
-    console = logging.StreamHandler()
-    console.setLevel(logging.INFO)
-    formatter = logging.Formatter('%(levelname)s: %(message)s')
-    console.setFormatter(formatter)
-    logging.getLogger('').addHandler(console)
-    return logging
 
 
 def get_webpage_soup(webpage_url, proxy_settings):
