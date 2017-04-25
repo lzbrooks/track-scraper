@@ -1,1 +1,1 @@
-web: gunicorn track_scraper_app.track_scraper_app.wsgi
+web: gunicorn track_scraper.wsgi

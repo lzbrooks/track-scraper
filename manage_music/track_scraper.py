@@ -1,6 +1,6 @@
-import sys
+# import sys
 
-from rest_calls_and_utils import set_up_logging_file, set_up_logging_to_console, get_webpage_soup
+from .track_scraper_utils import get_webpage_soup, set_up_logging_file, set_up_logging_to_console
 
 logging = set_up_logging_file()
 set_up_logging_to_console()
@@ -33,16 +33,16 @@ def scrape_section(all_fav_tracks):
         if fav_track.find(class_="year"):
             fav_track_year = fav_track.find(class_="year").find(class_="detail").string
         logging.info(fav_track_title + " by " + fav_track_artist + " in " + fav_track_album + ", " + fav_track_year)
-
-
-# Main Function Call
-if __name__ == '__main__':
-    # TODO: Make manual page for proxy settings input (and user input)
-    proxy_settings = {}
-    if sys.argv[1]:
-        http_proxy = str(sys.argv[1])
-        proxy_settings.update({"http": http_proxy})
-    if sys.argv[2]:
-        https_proxy = str(sys.argv[2])
-        proxy_settings.update({"https": https_proxy})
-    scraper_practice(proxy_settings)
+#
+#
+# # Main Function Call
+# if __name__ == '__main__':
+#     # TODO: Make manual page for proxy settings input (and user input)
+#     proxy_settings = {}
+#     if sys.argv[1]:
+#         http_proxy = str(sys.argv[1])
+#         proxy_settings.update({"http": http_proxy})
+#     if sys.argv[2]:
+#         https_proxy = str(sys.argv[2])
+#         proxy_settings.update({"https": https_proxy})
+#     scraper_practice(proxy_settings)

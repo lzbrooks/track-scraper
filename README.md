@@ -20,8 +20,8 @@ Quit Mongo Shell with `CTRL+C`
 
 Leave mongod running
 
-### Start track_scraper_app
+### Start track_scraper
 
-Run `python manage.py runserver` in `track-scraper\track_scraper_app` (you should be able to see `manage.py` in the folder)
+Run `python manage.py runserver` in `track-scraper\track_scraper` (you should be able to see `manage.py` in the folder)
 
 (Migrate schema changes if necessary)

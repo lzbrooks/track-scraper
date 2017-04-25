@@ -1,5 +1,5 @@
 """
-WSGI config for track_scraper_app project.
+WSGI config for track_scraper project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -12,7 +12,7 @@ import os
 from django.core.wsgi import get_wsgi_application
 from whitenoise.django import DjangoWhiteNoise
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "track_scraper_app.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "track_scraper.settings")
 
 application = get_wsgi_application()
 application = DjangoWhiteNoise(application)

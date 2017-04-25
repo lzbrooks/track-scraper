@@ -1,4 +1,4 @@
-"""track_scraper_app URL Configuration
+"""track_scraper URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
