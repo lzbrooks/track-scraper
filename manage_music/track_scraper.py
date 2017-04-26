@@ -1,3 +1,4 @@
+from pymongo.errors import DuplicateKeyError
 from requests import get
 import logging
 from datetime import datetime
@@ -19,22 +20,18 @@ def scraper_practice():
         for favourite_track in all_favorite_tracks:
             # TODO: there's a way to grab the artist info when playing tracks
             # todo: investigate for aliases, description, homepage
+            # https://8tracks.com/sets/197579681/next?player=sm&include=track%5Bfaved%2Bannotation%2Bartist_details%5D&mix_id=2183081&track_id=17451458&format=jsonh
             artist = save_artist(favourite_track)
             track = save_track(artist, favourite_track)
             save_recording(favourite_track, track)
             save_album(artist, favourite_track, track)
-            # "name": "Toy",
-            # "performer": "에프엑스(f(x))",
-            # "year": 20130729,
-            # 2013 07 29
-            # "release_name": "Pink Tape (Vol. 2)",
     log.info("Finished Scraper Practice")
 
 
 def get_request_json(user, index):
-    webpage_url = "https://8tracks.com/users/" + str(user) + "/favorite_tracks" + \
+    web_page_url = "https://8tracks.com/users/" + str(user) + "/favorite_tracks" + \
                   "?page=" + str(index) + "&format=jsonh"
-    request = get(webpage_url)
+    request = get(web_page_url)
     request_json = request.json()
     return request_json
 
@@ -42,7 +39,11 @@ def get_request_json(user, index):
 def save_artist(favourite_track):
     artist = Artist()
     artist.name = favourite_track["performer"]
-    artist.save()
+    # todo: append artist name as alias if different from name found
+    try:
+        artist.save()
+    except DuplicateKeyError:
+        artist = Artist.objects(name=artist.name)
     return artist
 
 
@@ -50,15 +51,24 @@ def save_track(artist, favourite_track):
     track = Track()
     track.name = favourite_track["name"]
     track.artists = [artist]
-    track.save()
+    try:
+        track.save()
+    except DuplicateKeyError:
+        track = Track.objects(name=track.name)
     return track
 
 
 def save_recording(favourite_track, track):
     recording = Recording()
     recording.tracks = [track]
+    recording.artists = [favourite_track["performer"]]
     recording.web_page = favourite_track["url"]
-    recording.save()
+    try:
+        recording.save()
+    except DuplicateKeyError:
+        # todo: maybe try to get this proper from the database
+        return recording
+    return recording
 
 
 def save_album(artist, favourite_track, track):
@@ -67,7 +77,12 @@ def save_album(artist, favourite_track, track):
     album.artists = [artist]
     album.tracks = [track]
     album.release_date = get_release_date(favourite_track["year"])
-    album.save()
+    try:
+        album.save()
+    except DuplicateKeyError:
+        # todo: maybe try to get this proper from the database
+        return album
+    return album
 
 
 def get_release_date(integer_date):

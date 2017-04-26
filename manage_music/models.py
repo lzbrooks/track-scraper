@@ -4,7 +4,7 @@ from mongoengine import Document, StringField, ListField, ReferenceField, DateTi
 
 # Artist
 class Artist(Document):
-    name = StringField(required=True)
+    name = StringField(required=True, unique=True)
     aliases = ListField(StringField())
     description = StringField()
     homepage = URLField()
@@ -12,24 +12,26 @@ class Artist(Document):
 
 # Genre
 class Genre(Document):
-    name = StringField(required=True)
+    name = StringField(required=True, unique=True)
     description = StringField()
 
 
 # Association
 class Association(Document):
-    name = StringField(required=True)
+    name = StringField(required=True, unique=True)
     description = StringField()
 
 
 # Track
 class Track(Document):
-    name = StringField(required=True)
+    name = StringField(required=True, unique_with='artists')
     artists = ListField(ReferenceField(Artist))
 
 
 class Recording(Document):
     tracks = ListField(ReferenceField(Track))
+    artists = ListField(ReferenceField(Artist))
+    version = StringField(unique_with=['tracks', 'artists'])
     description = StringField()
     play_time = StringField()
     lyrics = StringField()
@@ -42,7 +44,7 @@ class Recording(Document):
 
 # MusicCollection
 class MusicCollection(Document):
-    name = StringField(required=True)
+    name = StringField(required=True, unique_with='artists')
     artists = ListField(ReferenceField(Artist))
     description = StringField()
     picture_link = StringField()
