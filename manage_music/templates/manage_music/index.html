@@ -14,7 +14,7 @@
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form action="{% url 'polls:add_track' %}" method="post">
+<form action="{% url 'manage_music:add_track' %}" method="post">
     {% csrf_token %}
     <input type="text" name="track_name" id="track_name" value="Enter track name" />
     <input type="text" name="track_artist" id="track_artist" value="Enter track artist" /><br />
