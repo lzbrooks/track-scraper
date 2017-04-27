@@ -23,7 +23,7 @@ def scraper_practice():
             # https://8tracks.com/sets/197579681/next?player=sm&include=track%5Bfaved%2Bannotation%2Bartist_details%5D&mix_id=2183081&track_id=17451458&format=jsonh
             artist = save_artist(favourite_track)
             track = save_track(artist, favourite_track)
-            save_recording(favourite_track, track)
+            save_recording(artist, favourite_track, track)
             save_album(favourite_track, track)
     log.info("Finished Scraper Practice")
 
@@ -58,10 +58,10 @@ def save_track(artist, favourite_track):
     return track
 
 
-def save_recording(favourite_track, track):
+def save_recording(artist, favourite_track, track):
     recording = Recording()
     recording.tracks = [track]
-    recording.artists = track.artists
+    recording.artists = [artist]
     recording.web_page = favourite_track["url"]
     try:
         recording.save()
