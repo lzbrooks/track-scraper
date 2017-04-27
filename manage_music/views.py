@@ -33,14 +33,14 @@ class MusicDatabaseView(TemplateView):
             track.artists = [artist]
         except (KeyError, DuplicateKeyError):
             # Redisplay the question voting form.
-            return render(request, 'polls/index.html', {
+            return render(request, 'manage_music/index.html', {
                 'error_message': "Track already exists",
             })
         else:
             # Always return an HttpResponseRedirect after successfully dealing
             # with POST data. This prevents data from being posted twice if a
             # user hits the Back button.
-            return HttpResponseRedirect(reverse('polls:index'))
+            return HttpResponseRedirect(reverse('manage_music:index'))
 
     def get(self, request, **kwargs):
         scraper_practice()
