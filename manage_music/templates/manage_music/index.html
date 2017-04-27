@@ -1,3 +1,5 @@
+<h1>Top Tracks</h1>
+
 {% if top_alphabetical_track_list %}
     <ul>
     {% for track in top_alphabetical_track_list %}
@@ -7,3 +9,18 @@
 {% else %}
     <p>No tracks are available.</p>
 {% endif %}
+
+<h1>Add Track</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'polls:add_track' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="track_name" id="track_name" value="Enter track name" />
+    <input type="text" name="track_artist" id="track_artist" value="Enter track artist" /><br />
+    <input type="submit" value="Add" />
+</form>
+
+<form action="{% url 'polls:refresh_tracks' %}" method="get">
+<input type="submit" value="Add" />
+</form>
