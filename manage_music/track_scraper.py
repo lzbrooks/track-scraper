@@ -1,3 +1,4 @@
+from mongoengine import NotUniqueError
 from pymongo.errors import DuplicateKeyError
 from requests import get
 import logging
@@ -42,7 +43,7 @@ def save_artist(favourite_track):
     # todo: append artist name as alias if different from name found
     try:
         artist.save()
-    except DuplicateKeyError:
+    except (DuplicateKeyError, NotUniqueError):
         artist = Artist.objects(name=artist.name)
     return artist
 
@@ -53,7 +54,7 @@ def save_track(artist, favourite_track):
     track.artists = [artist]
     try:
         track.save()
-    except DuplicateKeyError:
+    except (DuplicateKeyError, NotUniqueError):
         track = Track.objects(name=track.name)
     return track
 
@@ -65,7 +66,7 @@ def save_recording(artist, favourite_track, track):
     recording.web_page = favourite_track["url"]
     try:
         recording.save()
-    except DuplicateKeyError:
+    except (DuplicateKeyError, NotUniqueError):
         # todo: maybe try to get this proper from the database
         return recording
     return recording
@@ -79,7 +80,7 @@ def save_album(favourite_track, track):
     album.release_date = get_release_date(favourite_track["year"])
     try:
         album.save()
-    except DuplicateKeyError:
+    except (DuplicateKeyError, NotUniqueError):
         # todo: maybe try to get this proper from the database
         return album
     return album
