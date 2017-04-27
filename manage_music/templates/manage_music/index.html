@@ -3,7 +3,7 @@
 {% if top_alphabetical_track_list %}
     <ul>
     {% for track in top_alphabetical_track_list %}
-        <li><a href="{% url 'manage_music:detail' track.name %}">{{ track.name }}</a></li>
+        <li>{{ track.name }}</li>
     {% endfor %}
     </ul>
 {% else %}
