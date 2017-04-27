@@ -24,7 +24,7 @@ def scraper_practice():
             artist = save_artist(favourite_track)
             track = save_track(artist, favourite_track)
             save_recording(favourite_track, track)
-            save_album(artist, favourite_track, track)
+            save_album(favourite_track, track)
     log.info("Finished Scraper Practice")
 
 
@@ -61,7 +61,7 @@ def save_track(artist, favourite_track):
 def save_recording(favourite_track, track):
     recording = Recording()
     recording.tracks = [track]
-    recording.artists = [favourite_track["performer"]]
+    recording.artists = track.artists
     recording.web_page = favourite_track["url"]
     try:
         recording.save()
@@ -71,10 +71,10 @@ def save_recording(favourite_track, track):
     return recording
 
 
-def save_album(artist, favourite_track, track):
+def save_album(favourite_track, track):
     album = Album()
     album.name = favourite_track["release_name"]
-    album.artists = [artist]
+    album.artists = track.artists
     album.tracks = [track]
     album.release_date = get_release_date(favourite_track["year"])
     try:
