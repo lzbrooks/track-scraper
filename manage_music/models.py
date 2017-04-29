@@ -31,7 +31,7 @@ class Track(Document):
 class Recording(Document):
     tracks = ListField(ReferenceField(Track))
     artists = ListField(ReferenceField(Artist))
-    version = StringField(unique_with=['tracks', 'artists'])
+    version = StringField()
     description = StringField()
     play_time = StringField()
     lyrics = StringField()
