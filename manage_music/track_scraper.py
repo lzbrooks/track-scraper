@@ -60,9 +60,10 @@ def save_track(artist, favourite_track):
 
 
 def save_recording(artist, favourite_track, track):
+    artists = [artist]
     recording = Recording()
     recording.tracks = [track]
-    recording.artists = [artist]
+    recording.artists = artists
     recording.web_page = favourite_track["url"]
     try:
         recording.save()
