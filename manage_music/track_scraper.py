@@ -46,7 +46,8 @@ def save_artist(favourite_track):
     try:
         artist.save()
     except (DuplicateKeyError, NotUniqueError):
-        artist = Artist.objects(name=artist.name)
+        for artist_object in Artist.objects(name=artist.name):
+            artist = artist_object
     print(artist.name)
     return artist
 
@@ -59,7 +60,8 @@ def save_track(artist, favourite_track):
     try:
         track.save()
     except (DuplicateKeyError, NotUniqueError):
-        track = Track.objects(name=track.name)
+        for track_object in Track.objects(name=track.name):
+            track = track_object
     print(track.name)
     return track
 
