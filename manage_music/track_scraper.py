@@ -49,9 +49,10 @@ def save_artist(favourite_track):
 
 
 def save_track(artist, favourite_track):
+    artists = [artist]
     track = Track()
     track.name = favourite_track["name"]
-    track.artists = [artist]
+    track.artists = artists
     try:
         track.save()
     except (DuplicateKeyError, NotUniqueError):
