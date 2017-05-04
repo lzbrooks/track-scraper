@@ -83,17 +83,18 @@ def save_recording(artist, favourite_track, track):
 
 
 def save_album(favourite_track, track):
-    album = Album()
-    album.name = favourite_track["release_name"]
-    album.artists = track.artists
-    album.tracks = [track]
-    album.release_date = get_release_date(favourite_track["year"])
-    try:
-        album.save()
-    except (DuplicateKeyError, NotUniqueError):
-        # todo: maybe try to get this proper from the database
+    if favourite_track["release_name"] is not None:
+        album = Album()
+        album.name = favourite_track["release_name"]
+        album.artists = track.artists
+        album.tracks = [track]
+        album.release_date = get_release_date(favourite_track["year"])
+        try:
+            album.save()
+        except (DuplicateKeyError, NotUniqueError):
+            # todo: maybe try to get this proper from the database
+            return album
         return album
-    return album
 
 
 def get_release_date(integer_date):
