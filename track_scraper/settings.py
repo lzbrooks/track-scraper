@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     # http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
-    'django_crontab',
+    'background_task',
     'manage_music',
 ]
 
@@ -162,7 +162,3 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # Add logging
 from .logger import LOGGING
 
-# 0 7 * * *
-CRONJOBS = [
-    ('*/15 * * * *', 'track_scraper.manage_music.track_scraper.refresh_favourite_tracks')
-]

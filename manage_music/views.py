@@ -1,3 +1,4 @@
+from background_task.models import Task
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -39,7 +40,7 @@ class MusicDatabaseView(TemplateView):
             return HttpResponseRedirect(reverse('manage_music:index'))
 
     def get(self, request, **kwargs):
-        refresh_favourite_tracks()
+        refresh_favourite_tracks(repeat=Task.DAILY, repeat_until=None)
 
 
 
