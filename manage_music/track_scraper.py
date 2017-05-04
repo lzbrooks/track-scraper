@@ -97,6 +97,8 @@ def save_album(favourite_track, track):
 
 
 def get_release_date(integer_date):
+    if integer_date is None:
+        return
     if len(str(integer_date)) == 4:
         return datetime.strptime(str(integer_date), "%Y")
     if len(str(integer_date)) == 6:
