@@ -12,11 +12,11 @@ log = logging.getLogger(__name__)
 
 def scraper_practice():
     log.info("Starting Scraper Practice")
-    request_json = get_request_json("dakre", 1)
+    request_json = get_favourite_track_request_json("dakre", 1)
     favorite_tracks_pagination = request_json["pagination"]
     total_pages = favorite_tracks_pagination["total_pages"]
     for index in range(1, total_pages):
-        request_json = get_request_json("dakre", index)
+        request_json = get_favourite_track_request_json("dakre", index)
         all_favorite_tracks = request_json["favorite_tracks"]
         for favourite_track in all_favorite_tracks:
             # TODO: there's a way to grab the artist info when playing tracks
@@ -29,7 +29,7 @@ def scraper_practice():
     log.info("Finished Scraper Practice")
 
 
-def get_request_json(user, index):
+def get_favourite_track_request_json(user, index):
     web_page_url = "https://8tracks.com/users/" + str(user) + "/favorite_tracks" + \
                   "?page=" + str(index) + "&format=jsonh"
     request = get(web_page_url)
@@ -49,6 +49,7 @@ def save_artist(favourite_track):
 
 
 def save_track(artist, favourite_track):
+    # artists = [artist]
     track = Track()
     track.name = favourite_track["name"]
     track.artists = [artist]
@@ -61,6 +62,7 @@ def save_track(artist, favourite_track):
 
 def save_recording(artist, favourite_track, track):
     recording = Recording()
+    recording.name = track.name
     recording.tracks = [track]
     recording.artists = [artist]
     recording.web_page = favourite_track["url"]

@@ -29,6 +29,7 @@ class Track(Document):
 
 
 class Recording(Document):
+    name = StringField(required=True,  unique=True)
     tracks = ListField(ReferenceField(Track))
     artists = ListField(ReferenceField(Artist))
     version = StringField()
