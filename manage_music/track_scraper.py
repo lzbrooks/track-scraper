@@ -11,7 +11,8 @@ log = logging.getLogger(__name__)
 
 
 def scraper_practice():
-    log.info("Starting Scraper Practice")
+    # log.info("Starting Scraper Practice")
+    print("Starting Scraper Practice")
     request_json = get_favourite_track_request_json("dakre", 1)
     favorite_tracks_pagination = request_json["pagination"]
     total_pages = favorite_tracks_pagination["total_pages"]
@@ -26,7 +27,8 @@ def scraper_practice():
             track = save_track(artist, favourite_track)
             save_recording(artist, favourite_track, track)
             save_album(favourite_track, track)
-    log.info("Finished Scraper Practice")
+    # log.info("Finished Scraper Practice")
+    print("Finished Scraper Practice")
 
 
 def get_favourite_track_request_json(user, index):
@@ -44,7 +46,9 @@ def save_artist(favourite_track):
     try:
         artist.save()
     except (DuplicateKeyError, NotUniqueError):
-        artist = Artist.objects(name=artist.name)
+        for artist_object in Artist.objects(name=artist.name):
+            artist = artist_object
+    print(artist.name)
     return artist
 
 
@@ -56,17 +60,21 @@ def save_track(artist, favourite_track):
     try:
         track.save()
     except (DuplicateKeyError, NotUniqueError):
-        track = Track.objects(name=track.name)
+        for track_object in Track.objects(name=track.name):
+            track = track_object
+    print(track.name)
     return track
 
 
 def save_recording(artist, favourite_track, track):
+    artists = [artist]
     recording = Recording()
     recording.name = track.name
     recording.tracks = [track]
-    recording.artists = [artist]
+    recording.artists = artists
     recording.web_page = favourite_track["url"]
     try:
+        print(recording.artists[0].name)
         recording.save()
     except (DuplicateKeyError, NotUniqueError):
         # todo: maybe try to get this proper from the database
