@@ -1,4 +1,3 @@
-from background_task import background
 from mongoengine import NotUniqueError
 from pymongo.errors import DuplicateKeyError
 from requests import get
@@ -11,7 +10,6 @@ from manage_music.models import Track, Artist, Recording, Album
 log = logging.getLogger(__name__)
 
 
-@background(schedule=60)
 def refresh_favourite_tracks():
     # log.info("Starting Scraper Practice")
     print("Starting Scraper Practice")
