@@ -164,5 +164,5 @@ from .logger import LOGGING
 
 # 0 7 * * *
 CRONJOBS = [
-    ('*/15 * * * *', '.track_scraper.refresh_favourite_tracks')
+    ('*/15 * * * *', 'track_scraper.refresh_favourite_tracks')
 ]
