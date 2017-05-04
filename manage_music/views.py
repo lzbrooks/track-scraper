@@ -8,7 +8,7 @@ from django.views.generic import TemplateView
 # assert isinstance(user, mongoengine.django.auth.User)
 from pymongo.errors import DuplicateKeyError
 
-from .track_scraper import scraper_practice
+from .track_scraper import refresh_favourite_tracks
 from .models import Track, Artist
 
 
@@ -39,7 +39,7 @@ class MusicDatabaseView(TemplateView):
             return HttpResponseRedirect(reverse('manage_music:index'))
 
     def get(self, request, **kwargs):
-        scraper_practice()
+        refresh_favourite_tracks()
 
 
 

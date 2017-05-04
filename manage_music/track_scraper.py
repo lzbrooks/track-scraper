@@ -10,7 +10,7 @@ from manage_music.models import Track, Artist, Recording, Album
 log = logging.getLogger(__name__)
 
 
-def scraper_practice():
+def refresh_favourite_tracks():
     # log.info("Starting Scraper Practice")
     print("Starting Scraper Practice")
     request_json = get_favourite_track_request_json("dakre", 1)
