@@ -1,3 +1,7 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'manage_music/style.css' %}" />
+
 <h1>Top Tracks</h1>
 
 {% if top_alphabetical_track_list %}
@@ -19,8 +23,4 @@
     <input type="text" name="track_name" id="track_name" value="Enter track name" />
     <input type="text" name="track_artist" id="track_artist" value="Enter track artist" /><br />
     <input type="submit" value="Add" />
-</form>
-
-<form action="{% url 'manage_music:refresh_tracks' %}" method="get">
-<input type="submit" value="Refresh Tracks" />
 </form>
