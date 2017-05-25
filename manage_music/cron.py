@@ -23,7 +23,7 @@ def refresh_favourite_tracks():
             # TODO: there's a way to grab the artist info when playing tracks
             # todo: investigate for aliases, description, homepage
             # https://8tracks.com/sets/197579681/next?player=sm&include=track%5Bfaved%2Bannotation%2Bartist_details%5D&mix_id=2183081&track_id=17451458&format=jsonh
-            # info is legit pulled from like wikipedia (sidebar and first paragraph)
+            # todo: info is legit pulled from like wikipedia (sidebar and first paragraph)
             artist = save_artist(favourite_track)
             track = save_track(artist, favourite_track)
             recording = save_recording(artist, favourite_track, track)
