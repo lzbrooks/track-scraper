@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Rubik');
 
 li {
-    font-family: 'Rubik', sans-serif;
+    list-style: none;
 }
 
 body {
