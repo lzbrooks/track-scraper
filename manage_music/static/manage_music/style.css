@@ -1,7 +1,10 @@
-li a {
-    color: green;
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+
+li {
+    font-family: 'Rubik', sans-serif;
 }
 
 body {
+    font-family: 'Rubik', sans-serif;
     background: white url("images/background.png") no-repeat right bottom;
 }

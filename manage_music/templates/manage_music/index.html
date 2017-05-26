@@ -7,7 +7,12 @@
 {% if top_alphabetical_track_list %}
     <ul>
     {% for track in top_alphabetical_track_list %}
-        <li>{{ track.name }}</li>
+        <li>
+            <em>{{ track.name }}</em> by
+            {% for artist in track.artists %}
+                <em>{{ artist.name }} </em>
+            {% endfor %}
+        </li>
     {% endfor %}
     </ul>
 {% else %}
