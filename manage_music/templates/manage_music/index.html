@@ -8,9 +8,9 @@
     <ul>
     {% for track in top_alphabetical_track_list %}
         <li>
-            <em>{{ track.name }}</em> by
+            <strong>{{ track.name }}</strong> by
             {% for artist in track.artists %}
-                <em>{{ artist.name }} </em>
+                <strong>{{ artist.name }} </strong>
             {% endfor %}
         </li>
     {% endfor %}
