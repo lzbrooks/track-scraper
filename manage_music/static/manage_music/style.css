@@ -45,9 +45,11 @@ Form Button Formatting
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
     background: #68347f;
+    border-color: #68347f;
 }
 
 .btn-primary:active, .btn-primary.active {
     background: #4a255b;
+    border-color: #68347f;
     box-shadow: none;
 }
