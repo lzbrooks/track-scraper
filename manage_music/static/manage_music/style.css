@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Rubik');
 
+/*
+Base Formatting
+*/
 h1 a {
     color: #FCA205;
 }
@@ -29,4 +32,21 @@ body {
 
 .content {
     margin-left: 40px;
+}
+
+/*
+Form Button Formatting
+*/
+.btn-primary {
+    background: #68347f;
+    color: #ffffff;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #773b91;
+}
+
+.btn-primary:active, .btn-primary.active {
+    background: #592c6d;
+    box-shadow: none;
 }
