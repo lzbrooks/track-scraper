@@ -35,12 +35,19 @@ body {
 }
 
 /*
+Index Formatting
+*/
+.top_tracks {
+    background-color: #68347f;
+}
+
+/*
 Form Button Formatting
 */
 .btn-primary {
     background: #592c6d;
     color: #ffffff;
-    border-color: #68347f;
+    border-color: #592c6d;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
@@ -50,6 +57,6 @@ Form Button Formatting
 
 .btn-primary:active, .btn-primary.active {
     background: #4a255b;
-    border-color: #68347f;
+    border-color: #4a255b;
     box-shadow: none;
 }

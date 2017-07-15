@@ -3,6 +3,7 @@
 {% block content %}
     <h1>Top Tracks</h1>
 
+    <div class="top_tracks">
     {% if top_alphabetical_track_list %}
         <ul>
         {% for track in top_alphabetical_track_list %}
@@ -17,6 +18,7 @@
     {% else %}
         <p>No tracks are available.</p>
     {% endif %}
+    </div>
 
     <h1>Add Track</h1>
 
