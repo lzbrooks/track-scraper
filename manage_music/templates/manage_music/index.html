@@ -6,7 +6,12 @@
     {% if top_alphabetical_track_list %}
         <ul>
         {% for track in top_alphabetical_track_list %}
-            <li>{{ track.name }}</li>
+            <li>
+                <strong>{{ track.name }}</strong> by
+                {% for artist in track.artists %}
+                    <strong>{{ artist.name }} </strong>
+                {% endfor %}
+            </li>
         {% endfor %}
         </ul>
     {% else %}
@@ -22,9 +27,5 @@
         <input type="text" name="track_name" id="track_name" value="Enter track name" />
         <input type="text" name="track_artist" id="track_artist" value="Enter track artist" /><br />
         <input type="submit" value="Add" />
-    </form>
-
-    <form action="{% url 'manage_music:refresh_tracks' %}" method="get">
-    <input type="submit" value="Refresh Tracks" />
     </form>
 {% endblock %}

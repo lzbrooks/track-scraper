@@ -1,22 +1,23 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.views import generic
 from django.views.generic import TemplateView
 # import mongoengine
-#
 # user = authenticate(username=username, password=password)
 # assert isinstance(user, mongoengine.django.auth.User)
 from pymongo.errors import DuplicateKeyError
 
-from .track_scraper import scraper_practice
 from .models import Track, Artist
 
 
-class HomePageView(TemplateView):
-    def get(self, request, **kwargs):
-        top_alphabetical_track_list = Track.objects.order_by('-name')[:5]
-        context = {'top_alphabetical_track_list': top_alphabetical_track_list}
-        return render(request, 'manage_music/index.html', context)
+class HomePageView(generic.ListView):
+    template_name = 'manage_music/index.html'
+    context_object_name = 'top_alphabetical_track_list'
+
+    def get_queryset(self):
+        """Return the top five alphabetic tracks."""
+        return Track.objects.order_by('-name')[:5]
 
 
 class AboutPageView(TemplateView):
@@ -37,9 +38,3 @@ class MusicDatabaseView(TemplateView):
             })
         else:
             return HttpResponseRedirect(reverse('manage_music:index'))
-
-    def get(self, request, **kwargs):
-        scraper_practice()
-
-
-
