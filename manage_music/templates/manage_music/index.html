@@ -1,26 +1,30 @@
-<h1>Top Tracks</h1>
+{% extends 'manage_music/base.html' %}
 
-{% if top_alphabetical_track_list %}
-    <ul>
-    {% for track in top_alphabetical_track_list %}
-        <li>{{ track.name }}</li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No tracks are available.</p>
-{% endif %}
+{% block content %}
+    <h1>Top Tracks</h1>
 
-<h1>Add Track</h1>
+    {% if top_alphabetical_track_list %}
+        <ul>
+        {% for track in top_alphabetical_track_list %}
+            <li>{{ track.name }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tracks are available.</p>
+    {% endif %}
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <h1>Add Track</h1>
 
-<form action="{% url 'manage_music:add_track' %}" method="post">
-    {% csrf_token %}
-    <input type="text" name="track_name" id="track_name" value="Enter track name" />
-    <input type="text" name="track_artist" id="track_artist" value="Enter track artist" /><br />
-    <input type="submit" value="Add" />
-</form>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form action="{% url 'manage_music:refresh_tracks' %}" method="get">
-<input type="submit" value="Refresh Tracks" />
-</form>
+    <form action="{% url 'manage_music:add_track' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="track_name" id="track_name" value="Enter track name" />
+        <input type="text" name="track_artist" id="track_artist" value="Enter track artist" /><br />
+        <input type="submit" value="Add" />
+    </form>
+
+    <form action="{% url 'manage_music:refresh_tracks' %}" method="get">
+    <input type="submit" value="Refresh Tracks" />
+    </form>
+{% endblock %}
